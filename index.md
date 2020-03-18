@@ -1,10 +1,10 @@
 ---
 layout: home
 title: Home
-landing-title: 'Hi, my name is Joshua Cho'
+landing-title: Hi, I'm Joshua Cho
 description: null
 image: null
-author: null
+author: Joshua Cho
 show_tile: false
 ---
 
