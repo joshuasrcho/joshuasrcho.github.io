@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Home
-landing-title: Hi, I'm Joshua Cho
+landing-title: Hi, My name is Joshua
 description: null
 image: null
 author: Joshua Cho

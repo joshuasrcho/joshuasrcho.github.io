@@ -3,6 +3,7 @@ title: Projects
 layout: landing
 description: Click here to check out what I've been working on
 image: assets/images/pic07.jpg
+permalink: /projects/
 nav-menu: true
 ---
 

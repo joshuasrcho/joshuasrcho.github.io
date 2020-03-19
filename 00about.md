@@ -1,0 +1,134 @@
+---
+layout: post
+title: About me
+description: Learn a little bit about me
+image: assets/images/pic11.jpg
+permalink: /about/
+nav-menu: true
+---
+
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+			<h1>About Me</h1>
+		</header>
+
+	<!-- Content -->
+	<span class="image fit"><img src="{% link assets/images/pic03.jpg %}" alt="" /></span>
+
+	<p>I am a Mechanical Engineering student at Northwestern University. I plan to in winter 2022 with both Bachelor's and Masters degrees in Mechanical Engineering through Northwestern's combined BS/MS program. I am passionate about robotics and control because they are a culmination of multiple engineering disciplines. in mechanical, electrical, and software systems  </p>
+
+	<p>I have background in mechatronics, control systems, manufacturing and rapid prototyping, </p>
+	<p>When I'm not working robots or tinkering with electronics, I like to watch soccer, play video games with my friends, and try new pasta recipes. </p>
+
+	<ul class="actions">
+		<li><a href="#" class="button small">Resume</a></li>
+	</ul>
+
+	<section id="one" class="spotlights">
+
+
+		<section>
+			<a href="" class="image">
+				<img src="/assets/images/pic08.jpg" alt="" data-position="center center">
+			</a>
+			<div class="content">
+				<div class="inner">
+					<header class="major">
+						<h3>Education</h3>
+					</header>
+					<p>I am currently studying Mechanical Engineering at Northwestern University. I plan to graduate in 2022 with both Bachelor's and Master's degrees in Mechanical Engineering through Northwestern's combined BS/MS program.</p>
+				</div>
+			</div>
+		</section>
+		<section>
+			<a href="" class="image">
+				<img src="/assets/images/pic09.jpg" alt="" data-position="top center">
+			</a>
+			<div class="content">
+				<div class="inner">
+					<header class="major">
+						<h3>Work Experience</h3>
+					</header>
+					<p>I have had the opportunity to work in teams and independently. I am very comfortable in both environments. </p>
+					<p>Center for Robotics and Biosystems </p>
+					<p>GE Aviation </p>
+					<p>Verboso</p>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="content">
+				<div class="inner">
+					<header class="major">
+						<h3>Mechanical Hardware Skills</h3>
+					</header>
+					<p>They say "Looks great, feels great." With developing, I like to abide by that in the design. If it looks right, feels right, and functions right, it can feel great. This leads to good positive interactions.</p>
+				</div>
+			</div>
+			<div class="graphs">
+				<div class="meter emerald">
+						<span style="width: 60%"><span>User Interface</span></span>
+				</div>
+				<div class="meter carrot">
+						<span style="width: 90%"><span>Typography</span></span>
+				</div>
+				<div class="meter asbestos">
+						<span style="width: 82%"><span>Bootstrap/Foundation Zurb</span></span>
+				</div>
+				<div class="meter wisteria">
+						<span style="width: 70%"><span>Web Applications</span></span>
+				</div>
+				<div class="meter sunflower">
+						<span style="width: 50%"><span>Adobe Illustrator/Photoshop</span></span>
+				</div>
+
+				<div class="break"></div>
+			</div>
+		</section>
+		<section>
+			<div class="content">
+				<div class="inner">
+					<header class="major">
+						<h3>Electrical Hardware Skills</h3>
+					</header>
+					<p>The drive to continually learn and update my programming skills never stops. I strive to learn as much as I can while maintaining a keen eye for good quality code. </p>
+				</div>
+			</div>
+			<ul>
+				<li>Dolor etiam magna etiam.</li>
+				<li>Sagittis lorem eleifend.</li>
+				<li>Felis dolore viverra.</li>
+			</ul>
+		</section>
+		<section>
+			<div class="content">
+				<div class="inner">
+					<header class="major">
+						<h3>Software Skills</h3>
+					</header>
+					<p>Preparation is key into building projects. Strategy, I believe, is something that is needed when preparing the building blocks to a project. Having the ability to set goals and backlog all issues is essential to having a functional project turn our perfect. </p>
+				</div>
+			</div>
+			<div class="graphs">
+				<div class="meter emerald">
+						<span style="width: 60.3%"><span>Google Analytics</span></span>
+				</div>
+				<div class="meter carrot">
+						<span style="width: 90%"><span>Git Version Control</span></span>
+				</div>
+				<div class="meter wisteria">
+						<span style="width: 75.2%"><span>Wireframes</span></span>
+				</div>
+				<div class="meter sunflower">
+						<span style="width: 70%"><span>Testing/Debugging</span></span>
+				</div>
+				<div class="meter asbestos">
+						<span style="width: 82%"><span>Command Line</span></span>
+				</div>
+			</div>
+		</section>
