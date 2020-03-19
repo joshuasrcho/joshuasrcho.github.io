@@ -1,6 +1,6 @@
 ---
 layout: post
-title: About me
+title: About Me
 description: Learn a little bit about me
 image: assets/images/pic11.jpg
 permalink: /about/
