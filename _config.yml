@@ -4,7 +4,7 @@ subtitle: Cho
 email: joshuasrcho@gmail.com
 description: Mechanical Engineering student and a future roboticist
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "joshuasrcho.github.io" # the base hostname & protocol for your site
+url: "" # the base hostname & protocol for your site
 author: Joshua Cho
 street_address:
 city: Evanston
