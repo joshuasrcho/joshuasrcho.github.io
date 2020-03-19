@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Embedded Webcam
-description: A fully integrated webcam built from scratch
-permalink: /projects/embedded-webcam/
-image: assets/images/pic06.jpg
+title: McCormick Autonomous Robot Design Competition
+description: Feugiat amet tempus
+permalink: /projects/mccormick-autonomous-robot-design-competition/
+image: assets/images/pic02.jpg
 ---
 
 Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis.

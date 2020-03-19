@@ -1,8 +1,9 @@
 ---
 layout: post
-title: Magna
+title: R2-D2 Line Follower
 description: Lorem etiam nullam
-image: assets/images/pic03.jpg
+permalink: /projects/r2-d2-line-follower/
+image: assets/images/line-follower1.jpg
 ---
 
 ![test image]({{ site.url | absolute_path}}/assets/images/pic03.jpg)
