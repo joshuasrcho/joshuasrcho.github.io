@@ -5,29 +5,27 @@ description: A fully integrated webcam built from scratch
 permalink: /projects/embedded-webcam/
 image: null
 ---
-
-
-<p><b>Project Duration:</b> January 2020 - March 2020</p>
-<p><b>Team:</b> Joshua Cho, Silvester Jang</p>
-<p><b>Acknowledgements:</b> Dr. Ilya Mikhelson, Roberto Roches</p>
-
-<div class="box alt">
-  <div class ="5u$">
-    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam1.jpg" alt="" />
-    </span>
+<div class="row 200%">
+  <div class="6u 12u$(medium)">
+        <span class="image fit"><img src="{{ site.url | absolute_path}}/assets/images/webcam1.jpg" alt="" /></span>
   </div>
-</div>
-<hr>
-<h3>Introduction</h3>
-<p>Embedded webcam was a quarter-long project for my elective course, EE326: Electronic
-  System Design I, at Northwestern University. The goal of this project was to build a fully functional embedded
-  webcam from scratch, and stream its images to a website. I decided to
- take this course because I wanted more experience designing and building an
- embedded system from start to finish, and also to broaden my knowledge in electrical
- engineering, as well as software development. Overall, this project gave me a valuable
- opportunity to prototype an IoT product and bring it to a final form.</p>
+  <div class="6u$ 12u$(medium)">
+    <p><b>Project Duration:</b> January 2020 - March 2020</p>
+    <p><b>Team:</b> Joshua Cho, Silvester Jang</p>
+    <p><b>Acknowledgements:</b> Dr. Ilya Mikhelson, Roberto Roches</p>
+    <hr>
+    <h3>Introduction</h3>
+    <p>Embedded webcam was a quarter-long project for my elective course, EE326: Electronic
+      System Design I, at Northwestern University. The goal of this project was to build a fully functional embedded
+      webcam from scratch, and stream its images to a website. I decided to
+     take this course because I wanted more experience designing and building an
+     embedded system from start to finish, and also to broaden my knowledge in electrical
+     engineering, as well as software development. Overall, this project gave me a valuable
+     opportunity to prototype an IoT product and bring it to a final form.</p>
+  </div>
 
-<hr>
+</div>
+<hr class="major">
 
 
 <h3>Design Process</h3>
@@ -51,9 +49,8 @@ image: null
   connections when necessary.</p>
 
 <div class="box alt">
-  <div class ="5u$">
-    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-breakout.jpg" alt="" />
-    </span>
+  <div class="5u 12u(medium)">
+    <span class="image fit"><img src="{{ site.url | absolute_path}}/assets/images/webcam-breakout.jpg" alt="" /></span>
   </div>
 </div>
 
@@ -63,7 +60,9 @@ image: null
 that a websocket is open. It also needed two pushbuttons: one that resets the system (MCU),
 and one that puts the WiFi module into "web setup" mode. With these features in mind,
 we wrote our firmware following the flowchart below:</p>
-<div class ="6u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-flowchart.png" alt="" /></span></div>
+<div class="5u 12u(medium)">
+  <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-flowchart.png" alt="" /></span>
+</div>
 <p>The firmware was written in C language in Atmel Studio. It involved writing functions that allowed the MCU to
 send commands to the WiFi module via USART, and receive and process the responses. We also configured interrupt requests
 and handlers to listen to the web setup button press and the "command complete" signal from the WiFi module.</p>
@@ -105,10 +104,10 @@ and handlers to listen to the web setup button press and the "command complete" 
 
 <div class="box alt">
   <div class="row 50% uniform">
-    <div class ="4u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-eagle-schematic1.png" alt="" /></span></div>
-    <div class ="4u$"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-eagle-schematic3.png" alt="" /></span></div>
-    <div class ="4u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-eagle-schematic2.png" alt="" /></span></div>
-    <div class ="4u$"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-eagle-schematic4.png" alt="" /></span></div>
+    <div class ="5u 12u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-eagle-schematic1.png" alt="" /></span></div>
+    <div class ="5u$ 12u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-eagle-schematic3.png" alt="" /></span></div>
+    <div class ="5u 12u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-eagle-schematic2.png" alt="" /></span></div>
+    <div class ="5u$ 12u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-eagle-schematic4.png" alt="" /></span></div>
 </div>
 </div>
 
@@ -116,7 +115,7 @@ and handlers to listen to the web setup button press and the "command complete" 
 and connections. We included a 5V barrel jack to power the board, and some programming and USB headers.
 The final layout of the board is shown below.</p>
 
-<div class ="4u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-eagle-board.png" alt="" /></span></div>
+<div class ="4u$ 12u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-eagle-board.png" alt="" /></span></div>
 
 <p>The finished board ended up being 50mm x 48mm in size, and worked perfectly!</p>
 
@@ -125,24 +124,25 @@ The final layout of the board is shown below.</p>
 <p>To become a finished product, the PCB need to be mounted inside a custom enclosure. We designed the CAD model
 of the enclosure in Onshape. Onshape is a cloud-based CAD software that runs on a web browser, which made collaborating much easier.
 <br> Some main features included supporting structures for the PCB, cutouts for the WiFi antenna, the camera, LEDs, and the power supply.
-We also included holes for the two buttons.</p>
+We also included small holes for the two buttons. These buttons were meant to be pressed using a narrow pin, just like how they would
+on a consumer electronic device</p>
 <div class="box alt">
   <div class="row 50% uniform">
-<div class ="4u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-cad-isometric.png" alt="" /></span></div>
-<div class ="2u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-top-view-inside.png" alt="" /></span></div>
-<div class ="2u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-top-view-outside.png" alt="" /></span></div>
-<div class ="2u$"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-top-view-lid.png" alt="" /></span></div>
+<div class ="4u 8u$(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-cad-isometric.png" alt="" /></span></div>
+<div class ="2u 4u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-top-view-inside.png" alt="" /></span></div>
+<div class ="2u 4u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-top-view-outside.png" alt="" /></span></div>
+<div class ="2u$ 4u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-top-view-lid.png" alt="" /></span></div>
 </div>
 </div>
-<p>We used Prusa i3 MK3 printer to 3D print our enclosure. It took some trial and error, as well as playing with the settings
-to get the best print quality and a perfect-fitting enclosure.</p>
+<p>We used Prusa i3 MK3 printer and PLA filament to 3D print our enclosure. It took some trial and error, as well as playing with the settings
+to get the best print quality and a perfect-fitting enclosure. The PCB, the enclosure, and the lid were all fastened using standard M2.5 screws</p>
 
 <div class="box alt">
   <div class="row 50% uniform">
-<div class ="2u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-front.png" alt="" /></span></div>
-<div class ="2u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-back.png" alt="" /></span></div>
-<div class ="4u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-print.png" alt="" /></span></div>
-</div>
+    <div class ="4u 10u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-print.png" alt="" /></span></div>
+    <div class ="2u 5u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-front.png" alt="" /></span></div>
+    <div class ="2u 5u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-back.png" alt="" /></span></div>
+  </div>
 </div>
 
 <h4>Website</h4>
@@ -153,9 +153,9 @@ to get the best print quality and a perfect-fitting enclosure.</p>
 
 <div class="box alt">
 <div class="row 50% uniform">
-<div class ="4u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-final-homepage.png" alt="" /></span></div>
-<div class ="4u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-final-page.png" alt="" /></span></div>
-<div class ="4u$"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-final-info.png" alt="" /></span></div>
+<div class ="4u 12u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-final-homepage.png" alt="" /></span></div>
+<div class ="4u 12u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-final-page.png" alt="" /></span></div>
+<div class ="4u$ 12u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-final-info.png" alt="" /></span></div>
 </div>
 </div>
 <p>The actual website was crafted using a combination of javascript, html, and css scripts. Javascript functions were heavily
@@ -168,7 +168,9 @@ The website was successfully able to capture the webcam image and display it at 
 
 <hr>
 <h3> Demo <h3>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/fzmXZNxrkx4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }
+   .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+ </style><div class='embed-container'><iframe src='https://www.youtube.com/embed/fzmXZNxrkx4' frameborder='0' allowfullscreen></iframe></div>
 <hr>
 <h3>Future Development</h3>
 <ol>
