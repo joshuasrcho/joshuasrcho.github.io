@@ -5,25 +5,103 @@ description: A fully integrated webcam built from scratch
 permalink: /projects/embedded-webcam/
 image: null
 ---
+
+
+<p><b>Project Duration:</b> January 2020 - March 2020</p>
+<p><b>Team:</b> Joshua Cho, Silvester Jang</p>
+<p><b>Acknowledgements:</b> Dr. Ilya Mikhelson, Roberto Roches</p>
+
 <div class="box alt">
-  <div class ="4u$">
+  <div class ="5u$">
     <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam1.jpg" alt="" />
-      <figcaption>Fully assembled webcam</figcaption>
+    </span>
+  </div>
+</div>
+<hr>
+<h3>Introduction</h3>
+<p>Embedded webcam was a quarter-long project for my elective course, EE326: Electronic
+  System Design I, at Northwestern University. The goal of this project was to build a fully functional embedded
+  webcam from scratch, and stream its images to a website. I decided to
+ take this course because I wanted more experience designing and building an
+ embedded system from start to finish, and also to broaden my knowledge in electrical
+ engineering, as well as software development. Overall, this project gave me a valuable
+ opportunity to prototype an IoT product and bring it to a final form.</p>
+
+<hr>
+
+
+<h3>Design Process</h3>
+<h4>Component Selection</h4>
+<p>The design process started with selecting the components for the prototype. The main components that we chose were:</p>
+<ul>
+  <li><b>Microcontroller:</b> Microchip ATSAM4S8B (64-lead LQFP package) </li>
+  <li><b>WiFi module:</b> Zentri AMW136</li>
+  <li><b>Camera module:</b> OV2640</li>
+  <li><b>Voltage regulator:</b> TLV1117LV 1-A (5V to 3V)</li>
+</ul>
+<p>The prototype also required standard surface mount capacitors, resistors, LEDs,
+  crystal oscillators, and through-hole pushbuttons. The Zentri AMW136 WiFi module
+  came with <a href="https://docs.zentri.com/">ZentriOS</a>, an IoT operating system that supports command API. This allowed
+  the WiFi module to receive commands directly from the MCU or a remote terminal
+  via USART interface. It also came with built-in GPIO pins that can be configured to
+  serve different useful purposes.</p>
+  <p>With all the components in hand, we were able to solder
+  them onto intermediate breakout boards and test their functionality together
+  before designing a final PCB. We also wrote our firmware at this stage so that we can easily modify
+  connections when necessary.</p>
+
+<div class="box alt">
+  <div class ="5u$">
+    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-breakout.jpg" alt="" />
     </span>
   </div>
 </div>
 
-<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis.
-Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat.
-Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris.
-Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit.</p>
-
+<h4>Firmware Design</h4>
+<a href="https://github.com/joshuasrcho/EE326">GitHub link to our code</a>
+<p><br>The main function of this webcam was to take pictures and stream them when it detects
+that a websocket is open. It also needed two pushbuttons: one that resets the system (MCU),
+and one that puts the WiFi module into "web setup" mode. With these features in mind,
+we wrote our firmware following the flowchart below:</p>
+<div class ="6u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-flowchart.png" alt="" /></span></div>
+<p>The firmware was written in C language in Atmel Studio. It involved writing functions that allowed the MCU to
+send commands to the WiFi module via USART, and receive and process the responses. We also configured interrupt requests
+and handlers to listen to the web setup button press and the "command complete" signal from the WiFi module.</p>
+<p>In our main function, first, we ran all initializations. Then, we looped through a set of commands. More specifically:
 <ul>
-  <li>ATSAM48S</li>
-  <li>AMW136</li>
-  <li>OV2640</li>
-  <li>ATSAM48S</li>
+  <li>Initialization
+    <ul>
+      <li>Initialize clock and board definitions.</li>
+      <li>Configure and start the Timer. </li>
+      <li>Configure the WiFi USART, as well as the Command pin and Web Setup pin.</li>
+      <li>Reset the WiFi and wait for it to connect to a network. While waiting, listen
+      for the Web Setup pin.</li>
+      <li>Initialize and configure the camera.</li>
+      <li>Tell the WiFi to turn off the command prompt and command echo.</li>
+    </ul>
+  </li>
+  <li>Loop
+    <ul>
+      <li>Check for Web Setup request.</li>
+      <li>If network is available, query available websocket connections. If it is not, reset the module.</li>
+      <li>If no connections available, delay 1s and start over.</li>
+      <li>If connections available, take picture.</li>
+      <li>If picture taken successfully, transfer it to the AMW136.</li>
+    </ul>
+  </li>
 </ul>
+</p>
+<p>We spent the majority of our time in this project completing the firmware
+  as it was very difficult to debug errors in our code, especially when they were
+  occurring at a register level. Nevertheless, we utilized debugging tools like Logic Analyzer,
+   Tera Term, the built-in debugger in Atmel Studio, and the datasheet to finish our firmware. </p>
+
+
+
+
+
+
+<h4>PCB Design</h4>
 
 <div class="box alt">
   <div class="row 50% uniform">
@@ -31,37 +109,75 @@ Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellen
     <div class ="4u$"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-eagle-schematic3.png" alt="" /></span></div>
     <div class ="4u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-eagle-schematic2.png" alt="" /></span></div>
     <div class ="4u$"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-eagle-schematic4.png" alt="" /></span></div>
-    <div class ="4u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-eagle-board.png" alt="" /></span></div>
 </div>
 </div>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis.
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum.
-Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum.
-Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus.
-Pellentesque aliquam maximus risus, vel sed vehicula.</p>
+<p>After we finalized and tested our firmware on the breakout boards, we designed a custom PCB in EAGLE to integrate all components
+and connections. We included a 5V barrel jack to power the board, and some programming and USB headers.
+The final layout of the board is shown below.</p>
 
-  <div class ="6u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-flowchart.png" alt="" /></span></div>
+<div class ="4u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-eagle-board.png" alt="" /></span></div>
 
-<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis.
-Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit.
-Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
-<div class="row 50% uniform">
+<p>The finished board ended up being 50mm x 48mm in size, and worked perfectly!</p>
+
+<h4>Enclosure Design</h4>
+
+<p>To become a finished product, the PCB need to be mounted inside a custom enclosure. We designed the CAD model
+of the enclosure in Onshape. Onshape is a cloud-based CAD software that runs on a web browser, which made collaborating much easier.
+<br> Some main features included supporting structures for the PCB, cutouts for the WiFi antenna, the camera, LEDs, and the power supply.
+We also included holes for the two buttons.</p>
+<div class="box alt">
+  <div class="row 50% uniform">
 <div class ="4u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-cad-isometric.png" alt="" /></span></div>
 <div class ="2u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-top-view-inside.png" alt="" /></span></div>
 <div class ="2u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-top-view-outside.png" alt="" /></span></div>
 <div class ="2u$"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-top-view-lid.png" alt="" /></span></div>
 </div>
-
-<div class ="4u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-print.png" alt="" /></span></div>
-
-<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis.
-Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit.
-Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
-
-<div class="row 50% uniform">
-<div class ="5u$"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-final-homepage.png" alt="" /></span></div>
-<div class ="5u$"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-final-page.png" alt="" /></span></div>
-<div class ="5u$"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-final-info.png" alt="" /></span></div>
 </div>
+<p>We used Prusa i3 MK3 printer to 3D print our enclosure. It took some trial and error, as well as playing with the settings
+to get the best print quality and a perfect-fitting enclosure.</p>
+
+<div class="box alt">
+  <div class="row 50% uniform">
+<div class ="2u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-front.png" alt="" /></span></div>
+<div class ="2u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-back.png" alt="" /></span></div>
+<div class ="4u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-print.png" alt="" /></span></div>
+</div>
+</div>
+
+<h4>Website</h4>
+<p>The final part of creating an embedded system was to create a simple website from which we can view the webcam image.
+  The website consisted of three pages: a main homepage, a webcam page that displays the actual webcam image and
+  its timestamp, and an info page that containts a brief description about ourselves.
+</p>
+
+<div class="box alt">
+<div class="row 50% uniform">
+<div class ="4u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-final-homepage.png" alt="" /></span></div>
+<div class ="4u"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-final-page.png" alt="" /></span></div>
+<div class ="4u$"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-final-info.png" alt="" /></span></div>
+</div>
+</div>
+<p>The actual website was crafted using a combination of javascript, html, and css scripts. Javascript functions were heavily
+   used to make sure that the webcam images are being transferred properly with the correct timestamps to the webcam.
+   To make the website look as professional as possible,
+   We also added some button animations, so that the start/stop button appears only when the cursor is hovering over the webcam image.
+The website was successfully able to capture the webcam image and display it at about 1fps.
+ </p>
+
+
+<hr>
+<h3> Demo <h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fzmXZNxrkx4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<hr>
+<h3>Future Development</h3>
+<ol>
+  <li>Reduce the size of the PCB by utilizing both sides of the PCB and placing the bypass capacitors closer to the MCU</li>
+  <li>Increase frame rate by maximizing the system clock speeds and lowering the resolution</li>
+  <li>Improve the camera enclosure for better tension relief</li>
+  <li>Redesign the website using a professional framework</li>
+</ol>
+<hr>
+<h3>Conclusion</h3>
+
+<p>In this course I learned how to create an embedded system from scratch through building a fully integrated webcam, including the hardware, firmware, and a website. Seeing our group’s finished product that worked perfectly after ten weeks of hard work was very rewarding. Throughout this quarter, I learned many new skills like surface mount soldering and web development, while also brushing up and improving my skills like coding in C, designing PCBs in Eagle, CAD, and 3D printing. EE326 was not easy, but it was one of the most rewarding and informative courses I have taken at Northwestern.
