@@ -1,61 +1,82 @@
 ---
 layout: post
 title: R2-D2 Line Follower
-description: Lorem etiam nullam
+description: null
 permalink: /portfolio/r2-d2-line-follower/
 image: null
 ---
-
+<div class="row 200%">
+  <div class="6u 12u$(medium)">
+      <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/line-follower1.jpg" alt="" /></span>
+  </div>
+  <div class="6u$ 12u$(medium)">
+    <p><b>Project Duration:</b> April 2019 - June 2019</p>
+    <p><b>Team:</b> Joshua Cho</p>
+    <p><b>Acknowledgements:</b> Nick Marchuk</p>
+    <hr>
+    <h3>Introduction</h3>
+    <p>I built a line follower robot based on the Star Wars character R2-D2 as the final project for the
+      course at Northwestern called ME433: Advanced Mechatronics. This robot was my entry for the Northwestern Tech Cup 2019,
+    a competition to determine which robot that can follow the line around in a loop the quickest.</p>
+  </div>
+</div>
+<hr class="major">
+<h3>Design Overview</h3>
 <div class="box alt">
   <div class="row 50% uniform">
-  <div class ="4u">
-    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/line-follower1.jpg" alt="" />
-      <figcaption>Fully assembled webcam</figcaption>
-    </span>
+  <div class ="4u 6u(medium)">
+    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/line-follower1.jpg" alt="" /></span>
   </div>
-  <div class ="4u$">
-    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/line-follower2.jpg" alt="" />
-      <figcaption>Fully assembled webcam</figcaption>
-    </span>
+  <div class ="4u$ 6u$(medium)">
+    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/line-follower2.jpg" alt="" /></span>
   </div>
 </div>
 </div>
 
 
-<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis.
-Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat.
-Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris.
-Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit.</p>
+<p>For this project I built a simple robot
+  that can detect a black line on a white background using an external camera module. The microcontroller of choice was PIC32MX270F256D,
+  the microcontroller I became familiar with over the course. The entire robot was powered by a 2S 500mAh LiPo battery.
+   The motors used were standard 6V N20 DC motors from Pololu and were
+driven by the DRV8835 H-bridge. They were mounted on the "legs" of R2-D2 using M1.6 screws.
+Lastly, I added a small servo at the top to recreate R2-D2's turning head.</p>
 
-<ul>
-  <li> aewfewf </li>
-  <li> aewfewf </li>
-  <li> aewfewf </li>
-  <li> aewfewf </li>
-</ul>
+    <div class ="4u 12u(medium)">
+      <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/line-follower-cad.png" alt="" />
+      </span>
+    </div>
 
+<p>My robot was built with just 3D printed parts, and laser-cut pieces of 1/8" thick acrylic. Most acrylic pieces
+were joined together using 4-40 fasteners in t-slot joints.</p>
+<div class ="4u 12u(medium)">
+  <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/line-follower-joint.png" alt="" />
+  </span>
+</div>
+<p> I found this design very useful in creating a sturdy 3D structure out of
+thin acrylic sheets. The 3D-printed wheels were attached to the motor using propeller adapters normally used on quadropters.</p>
+<hr>
+<h3>Navigation</h3>
+This robot navigates using an OV7670 camera module attached at the front bottom. The angle at which the camera is attached is
+adjustable, depending on how far ahead the camera needs to see for the robot to properly follow the line.
+The camera captures an image and it stores the brightness values of each pixel in a single row in the captured image.
+I then used a center of mass algorithm to track the location of the black line with respect straight-line path of the robot.
+Knowing where the black line is, I used PID control to turn the wheels so that the black line is maintained at the center of the camera frame.
 <div class="box alt">
-  <div class ="4u">
-    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/line-follower-cad.png" alt="" />
-      <figcaption>Fully assembled webcam</figcaption>
-    </span>
-  </div>
-  <div class ="4u$">
-    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/line-follower-joint.png" alt="" />
-      <figcaption>Fully assembled webcam</figcaption>
+  <div class ="6u$ 12u$(medium)">
+    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/line-follower-navigation.jpg" alt="" />
     </span>
   </div>
 </div>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis.
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum.
-Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum.
-Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus.
-Pellentesque aliquam maximus risus, vel sed vehicula.</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/LreoLPMYc3Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis.
-Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit.
-Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
+<p>Although this method worked, I was not able to get the robot to follow the line very fast. This was due to some design errors I made.
+First, the camera was way too close to the ground, so it can see only a couple inches ahead. Coupled with the slow update rate of the camera data,
+the robot could only move and turn so fast before losing track of where the line is. I also underestimated the weight of the acrylic head, which
+caused the robot to be very top-heavy and unstable (as can be seen in the video). Therefore, I had to wait for the robot to come to a complete stop before capturing the image to
+avoid noisy data.</p>
+<hr class="major">
+<h3>Demo</h3>
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/LreoLPMYc3Y' frameborder='0' allowfullscreen></iframe></div>
+<hr>
+<h3>Conclusion</h3>
+<p> This project was a lot of fun because I was able to get creative with the design of the robot. I enjoyed seeing my ideas come to reality and seeing one sheet
+  of acrylic turn into a full robot. I also learned so much in terms of mechatronics, optimization, and control. I would love to make improvements to this robot
+  and test it again in the future.
