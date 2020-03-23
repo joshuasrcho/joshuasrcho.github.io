@@ -1,80 +1,144 @@
 ---
 layout: post
 title: Robobrawl-Juan
-description: Ipsum dolor sit amet
-permalink: /projects/robobrawl-juan/
+description: null
+permalink: /portfolio/robobrawl-juan/
 image: null
 ---
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<div class="row 200%">
+  <div class="6u 12u$(medium)">
+        <span class="image fit"><img src="{{ site.url | absolute_path}}/assets/images/juan1.jpg" alt="" /></span>
+  </div>
+  <div class="6u$ 12u$(medium)">
+    <p><b>Project Duration:</b> September 2019 - Present</p>
+    <p><b>Team:</b> Holland Blumer, Joshua Cho, Josh Cohen, Scott Odland, Daniel Park, Paulina Robles, JD Wieland</p>
+    <p><b>Acknowledgements:</b> NU Robotics Club</p>
+      <div class="6u 12u$(medium)">
+        <a href="https://github.com/JCohner/juan2020">GitHub Repository</a>
+      </div>
+      <div class="6u 12u$(medium)">
+        <a href="https://cad.onshape.com/documents/3e606481f01234c8a17a8576/w/5b2da7dc03cdafc0e995c8b9/e/f6b40cba384e77a713ef57cf">Onshape CAD</a>
+      </div>
+     <hr>
+    <h3>Introduction</h3>
+    <p>Juan is my team's entry this year for <a href="https://robobrawl.illinois.edu/">Robobrawl</a>, an annual nationwide combat robotics events
+       held at the University of Illinois at Urbana-Champaign every March. Juan is an invertible combat robot with a spinning drum as its weapon,
+       and will compete in the 30 pound weight division.</p>
+  </div>
+</div>
+<hr class="major">
+
+<h3>Design Overview</h3>
+<div class="box alt">
+  <div class ="8u 12u(medium)">
+    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/juan-isometric.png" alt="" /></span>
+  </div>
+</div>
+<p>Juan is what is commonly known as a drumbot, a name given to a combat robot that uses a long cylinder-like weapon that spins
+vertically at a fast speed. One biggest advantage of a drumbot is that it can potentially toss an opposing robot upward. If designed correctly
+it can disable its opponent with a single hit. In addition, a drumbot can also be easily implemented into an invertible design.</p>
+
+<h4>Frame Design</h4>
+<div class="box alt">
+  <div class ="8u 12u(medium)">
+    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/juan-frame.png" alt="" /></span>
+  </div>
+</div>
+<p>Juan's frame is desgined to be able to protect all of its internal components, including the kill switch and the indicator LEDs that are exposed, from all angles. The two front supports allow
+  Juan to be invertible, meaning it can still function normally even if it is flipped upside down. We included a built-in wedge on each side of the spinning weapon to deflect impact and help
+  our robot get underneath the opponent and deliver a more effective blow. All plates are waterjetted and milled down to size from 1/2" sheet of 6061 aluminum,
+with the exception of the top and bottom plates, which are 3/16" thick.</p>
+
+<h4>Drivetrain Design</h4>
+<div class="box alt">
+  <div class ="8u 12u(medium)">
+    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/juan-drivetrain.png" alt="" /></span>
+  </div>
+</div>
+<p>The drivetrain of Juan consists of two HiGrip Wheels driven by two Banebots RS775 motors, paired with P60-44-7 16:1 gearboxes,
+   which are also from Banebots. Each motor is controlled by a Talon SRX from Vex, given the PWM signal from a microcontroller. These choices are quite straightforward and have proven to be
+  successful from previous years' competitions. </p>
+
+<h4>Weapon Design</h4>
 
 <div class="box alt">
   <div class ="8u$">
-    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/juan1.jpg" alt="" />
-      <figcaption>Juan - my team's entry for Robobrawl 2020</figcaption>
+    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/juan-front.jpg" alt="" />
     </span>
   </div>
 </div>
 
-<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis.
-Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat.
-Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris.
-Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit.</p>
+<p> <span class="image right"><img src="{{ site.url | absolute_path}}/assets/images/juan-bite.png" alt="" />
+</span>The weapon consists of a hollow aluminum cylinder with four steel inserts. The weapon is v-belt pulley driven by a
+DT38 620kv Turnigy Hotliner Brushless Inrunner Motor. The pulley ratio is 5:4, meaning with our 18.5V battery, the drum can theoretically spin up to \(620kv\times18.5V\times \frac{4}{5}= 9176 rpm\) ignoring the mass of the pulley.
+The moment of inertia of the finished drum calculated from CAD was \(I= 4.96\times10^{-3}kg\:m^2\).</p>
 
+<p>The total theoretical rotational energy delivered by the drum at max speed was calculated using the equation \(E=\frac{1}{2}I\omega^2 = 4.58kJ\)
+  </p>
 
-<div class="box alt">
-  <div class ="8u$">
-    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/juan-isometric.png" alt="" />
-      <figcaption>Isometric view of the full CAD assembly</figcaption>
-    </span>
-  </div>
-</div>
-
-<div class="box alt">
-  <div class ="8u$">
-    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/juan-top.png" alt="" />
-      <figcaption>Top view of the full CAD assembly</figcaption>
-    </span>
-  </div>
-</div>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis.
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum.
-Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum.
-Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus.
-Pellentesque aliquam maximus risus, vel sed vehicula.</p>
-
-<div class="box alt">
-  <div class ="8u$">
-    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/juan-front.g" alt="" />
-      <figcaption>Top view of the full CAD assembly</figcaption>
-    </span>
-  </div>
-</div>
+<p>Of course in real life, the actual energy delivered is lower due to lower motor speed and low efficiency.
+To maximize the amount of damage Juan does to the opponent per hit, we had to maximize our weapon's <b>bite</b>,
+the distance that measures how much the tips of the spinner will get into the opponent before hitting it (<i>d</i> in the diagram to the right from <b>Riobotz</b>).
+Bite was an important factor because a large bite meant that the spinner has a larger contact area with
+the opponent and would deliver a more effective blow.<br> Therefore, the team decided to go with a design with
+four protruding inserts, with two outside inserts facing one direction and the two inside ones facing the opposite direction. This ensures that our weapon has the
+maximum possible bite, while maintaining the center of mass at the axis of rotation.
+</p>
 
 <div class="box alt">
   <div class ="8u$">
     <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/juan-drum-exploded.png" alt="" />
-      <figcaption>Top view of the full CAD assembly</figcaption>
     </span>
   </div>
 </div>
-
-<div class="box alt">
-  <div class ="8u$">
-    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/juan-drum-mill.jpg" alt="" />
-      <figcaption>Top view of the full CAD assembly</figcaption>
-    </span>
+<p>The cutouts for the v-belt and the steel inserts on the 6061 aluminum tube were machined on mill and lathe. The steel inserts were also
+  custom machined, and were fastened onto the tube using #8-32 countersunk screws. The bolt circle pattern were machined on a conversational mill.</p>
+  <div class="box alt">
+    <div class ="8u$">
+      <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/juan-drum-mill.jpg" alt="" />
+        <figcaption>Top view of the full CAD assembly</figcaption>
+      </span>
+    </div>
   </div>
-</div>
 
-<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis.
-Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit.
-Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
+
+<h4>Electronics</h4>
+<p>Juan is powered by a single 5S 5000mAh 50C LiPo battery from HRB. All motor controllers receive PWM signals from Adafruit HUZZAH32,
+ a versatile ESP32-based feather board that supports Bluetooth classic and LE. This Bluetooth capability allowed the team to wirelessly control the robot
+using a familiar PS4 controller instead of a RC transmitter.<br> Programming the board was fairly straightforward, which involved properly mapping the PS4 joystick input to
+the correct PWM range of the motor and outputting it to the corresponding pin. Our Github repository can be found <a href="https://github.com/JCohner/juan2020">here</a>. We also took advantage of the <a href="https://github.com/NURoboticsClub/Fighting_Robot_Control">fighting robot controller library</a>,
+written by Albert Dotson of NU Robotics Club.
+<p>Electric power was distributed among components using two copper busbars, which were protected by 3D-printed enclosures.
 
 <div class="box alt">
   <div class ="8u$">
     <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/juan-inside.jpg" alt="" />
-      <figcaption>Top view of the full CAD assembly</figcaption>
+    </span>
+  </div>
+</div>
+<hr class=major>
+
+<h3>Future Development</h3>
+<p>Unfortunately due to concerns surrounding the COVID-19 pandemic, Robobrawl, which was scheduled to be held in March 2020, was cancelled 2 weeks before the event.
+Although we were not able to see how well our robot performed against other robots, we conducted some internal assessments, and have identified
+areas to improve before next year's competition. </p>
+
+<ul>
+  <li>Juan weighed 21 pounds, which is way below the maximum allowable weight of 30 pounds. We plan on replacing some of the
+  aluminum plates from the frame with annealed steel to add extra weight and protection. We will also brainstorm ideas to add more weight to the drum without
+  jeopardizing the center of mass or the bite.</li>
+  <li>We will definitely work on better cable management. This could be done by making the chassis longer, which will add more room for us
+  to properly mount power distrubtion modules.</li>
+  <li>We will continue testing and playing with the VESC firmware to decrease the time it takes for the drum to spin up to its max speed. Currently it's at 3.83 seconds.</li>
+  <li>The drive motors spin up too quickly, making it hard to control the robot. We will modify the code to make them less responsive.</li>
+</ul>
+
+<div class="box alt">
+  <div class ="8u$">
+    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/juan-pic.jpg" alt="" />
     </span>
   </div>
 </div>
