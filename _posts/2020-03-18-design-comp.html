@@ -1,50 +1,93 @@
 ---
 layout: post
-title: McCormick Autonomous Robot Design Competition
+title: McCormick Robot Design Competition
 description: Feugiat amet tempus
-permalink: /portfolio/mccormick-autonomous-robot-design-competition/
+permalink: /portfolio/mccormick-robot-design-competition/
 image: null
 ---
-<div class="box alt">
-  <div class ="7u">
-    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/dc1.jpg" alt="" />
-      <figcaption>Fully assembled webcam</figcaption>
+<div class="row 200%">
+  <div class="6u 12u$(medium)">
+        <span class="image fit"><img src="{{ site.url | absolute_path}}/assets/images/dc1.jpg" alt="" /></span>
+  </div>
+  <div class="6u$ 12u$(medium)">
+    <p><b>Project Duration:</b> March 2019 - May 2019</p>
+    <p><b>Team:</b> Joshua Cho, Paulina Robles</p>
+    <p><b>Acknowledgements:</b> Nick Marchuk</p>
+    <hr>
+    <h3>Introduction</h3>
+    <p>For McCormick Robot Design Comptition, my teammate Paulina and I built a bluetooth-controlled gripper robot
+    that can navigate around obstacles and move rectangular objects. It has multiple sensors that allow it to scan its surroundings
+  and stream the information to a graphical display. Our robot was the recipient of the Myke Minbiole Elegant Engineering Award.</p>
+  </div>
+</div>
+<hr class="major">
+<p>McCormick Robot Design Competition is an annual tournament-style competition held within Northwestern's McCormick School of Engineering.
+Each year, teams are challenged to build an autonomous or a semi-autonomous robot to complete a series of tasks.
+This year's tournament was based on the famous board game Battleship.<br>
+The playing field consists of two 6ft by 6ft square boards, separated by a barrier that prevents the teams from
+seeing the other side. Teams place their robots on the opposite board, and then place four rectangular tokens and walls on their own board.
+Then, teams must only use the sensor data from their robots to remotely control them and push all of the opponents' tokens off their board.
+The team that removes all tokens first wins the round. No cameras are allowed.</p>
+<h3>Mechanical Design</h3>
+<div class ="8u$ 12u$(medium)">
+  <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/dc2019-isometric.png" alt="" />
+  </span>
+</div>
+<p>The frame of the robot was built from laser cut 1/8" thick acrylic held together using a combination of puzzle and t-slot joints. The bottom layer held two motors and the battery, as well as the gripper module.
+The motors and the battery were secured using 3D-printed mounts. The wheels were also 3D-printed and had grooves to put O-rings around for traction.
+The top layer held the breadboard that contained all necessary electronics.</p>
+
+<div class ="4u$ 12u$(medium)">
+  <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/dc2019-gripper.gif" alt="" />
+  </span>
+</div>
+<p>The robot utilized rack-and-pinion style grippers controlled by a single servo in the center. The grippers
+and the base plate that held the grippers were 3D printed, while the gears were made from laser cut acrylic. The grippers
+extended linearly up to 6.5 inches wide and could grab tokens of all sizes. Limit switches were embedded in the grippers to let the driver know when it had a firm grip on a token. </p>
+
+<h3>Electronics</h3>
+<p>The robot used ESP32 Feather HUZZAH32 for most of its operations and bluetooth capabilities. The robot was powered by a 12V Bosch drill battery, and a 3.7V Lipoly battery for the Feather.
+  For the drivetrain, it used two Chihai 12V DC motors with rotary enconders, which were controlled by MAX14870 motor drivers from Pololu.</p>
+
+<p>In order to locate the tokens, our robot utilized several sensors. We used two HTC Vive sensors on each side of the robot paired with a Teensy 3.2 to obtain the x and y positions
+   of the robot on the map. The data was then communicated to the Feather via UART.
+We later discovered that the coordinates received from the Vive sensors were distorted, and that they did not translate very well to the real life coordinates of the playing field.
+We got around this issue by collecting Vive coordinate points at 5 different locations on the playing field before every match, then performing a linear transformation to match the actual coordinates. Consequently, we
+decided to use a BNO055 absolute orientation sensor from Adafruit for orientation instead of trying to do the math with unreliable Vive data. </p>
+
+<p>A laser and a phototransistor were paired together to detect the tokens, which had retroreflective surfaces. This was done by flashing the laser at 20Hz, then measuring how much reflected
+light was captured by the phototransistor. By setting a threshold for the difference between the phototransistor readings when the laser was off and when the laser was on, we could effectively tell
+whether the robot was in front of a token or a wall.</p>
+
+<p>Lastly, we used a HC-SR04 ultrasonic distance sensor to measure the distance between the robot and the object in front of it with the accuracy of +/- 3mm. Knowing the position and the orientation of the robot,
+and the distance between the robot and the tokens and walls, we were finally able to obtain the precise absolute positions of the game elements.</p>
+
+<h3>GUI/Control</h3>
+<div class="row">
+
+  <div class ="5u 12u$(medium)">
+    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/dc-gui.png" alt="" />
     </span>
   </div>
 </div>
 
+<p>The data obtained from the sensors were transmitted to my laptop via bluetooth, which parsed and displayed them in a PyGame Zero window.
+The graphical display gave us a visual representation of the playing field and the game elements. The position and the orientation of
+the robot was represented by the spaceship icon.
+The map was then populated with green and red dots as the robot began navigating and scanning its surroundings. A green dot was placed where the robot
+detected an object with a reflective surface (token), and a red dot was placed where the robot detected an object with a non-reflective surface (wall).</p>
 
-<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis.
-Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat.
-Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris.
-Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit.</p>
-
-<div class ="8u$">
-  <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/dc2019-isometric.png" alt="" />
-    <figcaption>Fully assembled webcam</figcaption>
-  </span>
-</div>
-
-<div class ="4u$">
-  <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/dc2019-gripper.gif" alt="" />
-    <figcaption>Fully assembled webcam</figcaption>
-  </span>
-</div>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis.
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum.
-Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum.
-Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus.
-Pellentesque aliquam maximus risus, vel sed vehicula.</p>
-
-
-<div class ="8u$">
+<div class ="8u$ 12u$(medium)">
   <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/dc2.jpg" alt="" />
-    <figcaption>Fully assembled webcam</figcaption>
   </span>
 </div>
+<p>The robot was controlled by holding down WASD keys on the laptop keyboard. We also added functions to make the robot move by a set angle/distance increment by lightly tapping on the keys
+instead of holding. This allowed the robot to make more precise movements when trying to grab the tokens. All maneuvering was done by PID control. </p>
 
-Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis.
-Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit.
-Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.
+<h3>Demo</h3>
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/DfSaJ4jJ1Xg' frameborder='0' allowfullscreen></iframe></div>
+<hr class="major">
+<h3>Conclusion</h3>
+<p>The mechanical component of our robot was very successful and we ended up winning the Myke Minbiole Elegant Engineering Award. The grippers worked perfectly and had no problem grabbing the tokens regardless of
+size or position. However, we did have some issues with our software. The Vive readings were distorted and noisy, so even with a linear fit, we experienced error in locating our robot.
+Incremental turning was also not a good idea; although the robot was able to make precise turns, it turned very slowy especially with the inherent latecy that came with bluetooth.</p>
