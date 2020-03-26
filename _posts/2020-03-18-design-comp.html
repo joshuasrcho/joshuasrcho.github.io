@@ -49,6 +49,11 @@ extended linearly up to 6.5 inches wide and could grab tokens of all sizes. Limi
 <p>The robot used ESP32 Feather HUZZAH32 for most of its operations and bluetooth capabilities. The robot was powered by a 12V Bosch drill battery, and a 3.7V Lipoly battery for the Feather.
   For the drivetrain, it used two Chihai 12V DC motors with rotary enconders, which were controlled by MAX14870 motor drivers from Pololu.</p>
 
+  <div class ="8u$ 12u$(medium)">
+    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/dc-electronics.jpg" alt="" />
+    </span>
+  </div>
+
 <p>In order to locate the tokens, our robot utilized several sensors. We used two HTC Vive sensors on each side of the robot paired with a Teensy 3.2 to obtain the x and y positions
    of the robot on the map. The data was then communicated to the Feather via UART.
 We later discovered that the coordinates received from the Vive sensors were distorted, and that they did not translate very well to the real life coordinates of the playing field.
@@ -78,7 +83,7 @@ The map was then populated with green and red dots as the robot began navigating
 detected an object with a reflective surface (token), and a red dot was placed where the robot detected an object with a non-reflective surface (wall).</p>
 
 <div class ="8u$ 12u$(medium)">
-  <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/dc2.jpg" alt="" />
+  <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/dc-game.jpg" alt="" />
   </span>
 </div>
 <p>The robot was controlled by holding down WASD keys on the laptop keyboard. We also added functions to make the robot move by a set angle/distance increment by lightly tapping on the keys
