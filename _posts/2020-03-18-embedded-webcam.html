@@ -13,6 +13,7 @@ image: null
     <p><b>Project Duration:</b> January 2020 - March 2020</p>
     <p><b>Team:</b> Joshua Cho, Silvester Jang</p>
     <p><b>Acknowledgements:</b> Dr. Ilya Mikhelson, Roberto Roches</p>
+      <a href="https://github.com/joshuasrcho/EE326">GitHub Repository</a>
     <hr>
     <h3>Introduction</h3>
     <p>Embedded webcam was a quarter-long project for my elective course, EE326: Electronic
@@ -55,8 +56,8 @@ image: null
 </div>
 
 <h4>Firmware Design</h4>
-<a href="https://github.com/joshuasrcho/EE326">GitHub link to our code</a>
-<p><br>The main function of this webcam was to take pictures and stream them when it detects
+
+<p>The main function of this webcam was to take pictures and stream them when it detects
 that a websocket is open. It also needed two pushbuttons: one that resets the system (MCU),
 and one that puts the WiFi module into "web setup" mode. With these features in mind,
 we wrote our firmware following the flowchart below:</p>
@@ -122,10 +123,10 @@ The final layout of the board is shown below.</p>
 <h4>Enclosure Design</h4>
 
 <p>To become a finished product, the PCB need to be mounted inside a custom enclosure. We designed the CAD model
-of the enclosure in Onshape. Onshape is a cloud-based CAD software that runs on a web browser, which made collaborating much easier.
+of the enclosure in Onshape.
 <br> Some main features included supporting structures for the PCB, cutouts for the WiFi antenna, the camera, LEDs, and the power supply.
 We also included small holes for the two buttons. These buttons were meant to be pressed using a narrow pin, just like how they would
-on a consumer electronic device</p>
+on a consumer electronic device.</p>
 <div class="box alt">
   <div class="row 50% uniform">
 <div class ="4u 8u$(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/webcam-cad-isometric.png" alt="" /></span></div>
@@ -135,7 +136,7 @@ on a consumer electronic device</p>
 </div>
 </div>
 <p>We used Prusa i3 MK3 printer and PLA filament to 3D print our enclosure. It took some trial and error, as well as playing with the settings
-to get the best print quality and a perfect-fitting enclosure. The PCB, the enclosure, and the lid were all fastened using standard M2.5 screws</p>
+to get the best print quality and a perfect-fitting enclosure. The PCB, the enclosure, and the lid were all fastened using standard M2.5 screws.</p>
 
 <div class="box alt">
   <div class="row 50% uniform">
@@ -160,9 +161,9 @@ to get the best print quality and a perfect-fitting enclosure. The PCB, the encl
 </div>
 <p>The actual website was crafted using a combination of javascript, html, and css scripts. Javascript functions were heavily
    used to make sure that the webcam images are being transferred properly with the correct timestamps to the webcam.
-   To make the website look as professional as possible,
+   To make the website look more professional,
    We also added some button animations, so that the start/stop button appears only when the cursor is hovering over the webcam image.
-The website was successfully able to capture the webcam image and display it at about 1fps.
+The website was successfully able to capture the webcam image and display it at about 1 frame per second.
  </p>
 
 
@@ -182,4 +183,4 @@ The website was successfully able to capture the webcam image and display it at 
 <hr>
 <h3>Conclusion</h3>
 
-<p>In this course I learned how to create an embedded system from scratch through building a fully integrated webcam, including the hardware, firmware, and a website. Seeing our group’s finished product that worked perfectly after ten weeks of hard work was very rewarding. Throughout this quarter, I learned many new skills like surface mount soldering and web development, while also brushing up and improving my skills like coding in C, designing PCBs in Eagle, CAD, and 3D printing. EE326 was not easy, but it was one of the most rewarding and informative courses I have taken at Northwestern.
+<p>In this course I learned how to create an embedded system from scratch through building a fully integrated webcam, including the hardware, the firmware, and a website. Seeing our group’s finished product that worked perfectly after ten weeks of hard work was very rewarding. Throughout this course, I learned many new skills like surface mount soldering and web development, while also brushing up and improving my skills like coding in C, designing PCBs in EAGLE, CAD, and 3D printing.

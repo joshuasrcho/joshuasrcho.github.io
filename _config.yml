@@ -1,8 +1,8 @@
 # site settings
-title: Joshua
-subtitle: Cho
+title: Joshua Cho
+subtitle:
 email: joshuasrcho@gmail.com
-description: Mechanical Engineering student | future roboticist
+description: Mechanical Engineering student | future robotics engineer
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site
 author: Joshua Cho
