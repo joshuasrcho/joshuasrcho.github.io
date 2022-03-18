@@ -1,0 +1,190 @@
+---
+layout: post
+title: UAV Autonomous Precision Landing
+description: null
+permalink: /portfolio/uav/
+image: null
+---
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<div class="row 200%">
+  <div class="6u 12u$(medium)">
+        <span class="image fit"><img src="{{ site.url | absolute_path}}/assets/images/uav/uav_main.jpg" alt="" /></span>
+  </div>
+  <div class="6u$ 12u$(medium)">
+    <h3>Introduction</h3>
+    <p>This project is part of my Mechanical Engineering Capstone project, in which my team designed,
+        built, and tested an autonomously landing drone-robot power exchange system Professor Sridhar
+        Krishnaswamy of Northwestern University’s Department of Mechanical Engineering. In this project,
+        the localization of the drone is handled using visual inertial odometry (VIO), instead of the more 
+        traditional approach of using GPS sensors like on most hobbyist drones. This camera-based approach 
+        provides accurate and robust GPS-less localization and navigation. The drone uses AprilTag to detect 
+        landing target and perform precision landing
+    </p>
+  </div>
+</div>
+<hr class="major">
+
+<h3>Hardware</h3>
+<div class="box alt">
+  <div class="row 50% uniform">
+    <div class ="5u 12u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/uav/uav_camera.jpg" alt="" /></span></div>
+    <div class ="5u$ 12u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/uav/uav_top.jpg" alt="" /></span></div>
+</div>
+</div>
+<p>The list of hardware used for this project is shown below: 
+</p>
+
+<ul>
+    <li>Holbro X500 V2 frame </li>
+    <li>Pix32 v5 flight controller and carrier board</li>
+    <li>Raspberry Pi 4B 8GB RAM</li>
+    <li>32GB MicroSD card</li>
+    <li>Pisugar2 Plus</li>
+    <li>Intel RealSense T265 Tracking Camera</li>
+    <li>mRo Sik Telemetry Radio V2 915Mhz</li>
+    <li>FrSky Taranis Receiver X8R</li>
+    <li>4S 50C 6000mAh Li-Po battery</li>
+  </ul> 
+
+  <div class="box alt">
+    <div class="row 50% uniform">
+      <div class ="3u 6u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/uav/uav_realsense.png" alt="" /></span></div>
+      <div class ="3u$ 6u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/uav/uav_pisugar.png" alt="" /></span></div>
+  </div>
+  </div>
+
+  <p>The main sensor used for drone position tracking is the Intel RealSense T265 Tracking Camera,
+       a powerful localization and mapping device popular in the robotics research 
+    community. It is lightweight, has a small profile, and has built-in chip sets dedicated to 
+    V-SLAM, making it optimal for use on a drone with a small
+     scale companion computer. The RealSense tracking camera is mounted at the front of the drone,
+      facing downwards.
+</p>
+
+<p>Raspberry Pi 4B was chosen as the onboard
+    companion computer, as it was the economical option that has USB 2.0 capability needed to receive images
+    from the RealSense camera. The Pi requires a regulated 5V power supply at up to 
+    3.0A, which cannot be achieved with the drone's built-in voltage regulator. Therefore, the 
+    team decided to power the Raspberry Pi with a dedicated battery pack with integrated 
+    safety circuit, called PiSugar 2 Plus. 
+</p>
+
+<p>The onboard flight controller is Holybro Pix32 v5, a variant version of the popular Pixhawk 4 flight
+    controller developed by the same company. 
+</p>
+
+
+<h3>Software Installations</h3>
+<p> This section outlines the software requirements for achieving VIO navigation</p>
+Raspberry Pi 4B
+<ul>
+    <li>16GB+ microSD card</li>
+    <li>Ubuntu Server 20.04.4 LTS </li>
+    <li><a href="http://wiki.ros.org/noetic/Installation/Ubuntu">ROS Noetic</a> - latest distribution of Robot Operating System</li>
+    <li><a href="https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md">librealsense</a> - RealSense libraries and required dependencies</li>
+    <li><a href="https://github.com/IntelRealSense/realsense-ros">realsense-ros</a> - ROS wrapper  for RealSense devices</li>
+    <li><a href="https://ardupilot.org/dev/docs/ros-install.html#installing-mavros">mavros</a> - ROS tool for receiving and sending MAVLink messages</li>
+    <li><a href="https://github.com/thien94/vision_to_mavros">vision_to_mavros</a> - ROS nodes and launchfiles for converting vision data from camera to MAVLink compatible messages</li>
+    <li><a href="https://github.com/AprilRobotics/apriltag_ros">apriltag_ros</a> - ROS wrapper for AprilTag 3 visual fiducial detector
+</ul>
+
+Pix32v5
+<ul>
+    <li>Latest stable version of ArduPilot Copter firmware</li>
+</ul>
+
+Ground control PC
+<ul>
+    <li>ROS Noetic</li>
+    <li><a href="http://qgroundcontrol.com/">QGroundControl</a> - Flight control and mission planning software for MAVLink enabled drone.</li>
+</ul>
+
+<h4>System Overview</h4>
+
+Below image shows a high level overview of how the hardware components of the drone communicate 
+with each other.
+
+<div class="box alt">
+  <div class ="6u 12u(medium)">
+    <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/uav/uav_overview.png" alt="" /></span>
+    </div>
+</div>
+
+<p>Data on the drone’s position is collected from the camera as a raw image stream. This data is processed
+ onboard the camera into position and orientation coordinates relative to the camera’s frame. 
+ This /tf data is sent to the Raspberry Pi computer that uses a custom-written ROS package to 
+ further process this data into MAVLink language that is readable by the flight controller. 
+ During this process, the position data is transformed to match the coordinate frame used by the 
+ flight control and the ground control software (NED convention, where x is point to East direction,
+ y is pointing to the North, and z is pointing up).</p>
+ 
+ <div class="box alt">
+    <div class ="6u 12u(medium)">
+      <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/uav/uav_coordinates.png" alt="" /></span>
+      </div>
+  </div>
+  <p> The processed data is sent to the flight controller, which then makes a decision to maintain stable flight. Data streams are also relayed
+  back to the ground station via a wireless communication protocol (Mavlink). Furthermore, 
+  the raw image from the camera’s fisheye lenses is processed into a rectified 
+  image within Raspberry Pi using computer vision algorithms. An AprilTag detection algorithm 
+  then searches for the unique grayscale pattern within the rectified image to determine whether
+   the AprilTag is in the frame.</p>
+   <div class="box alt">
+    <div class="row 50% uniform">
+      <div class ="3u 6u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/uav/uav_apriltag_fisheye.png" alt="" /></span></div>
+      <div class ="3u$ 6u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/uav/uav_apriltag_rect.png" alt="" /></span></div>
+  </div>
+  </div>
+      Raw fisheye image from RealSense camera (left). Tag detection image (right).
+
+
+<h4>Localization & Navigation</h4>
+
+<div class="box alt">
+    <div class ="6u 12u$(small)">
+      <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/uav/uav_rviz.gif" alt="" /></span>
+      </div>
+  </div>
+
+  <p> Proper real-time transformation of camera pose to MavLink vision_pose_estimate, and serial
+      communication between RPi and FCU via MAVlink, were validated using manual flight 
+    of the drone. The drone's pose estimate was plotted in RViz. </p>
+
+  <div class="box alt">
+    <div class ="6u 12u$(small)">
+      <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/uav/uav_qgroundcontrol.gif" alt="" /></span>
+      </div>
+  </div>
+
+  <p>The drone can also be controlled from graphical user interface on QGroundControl, using waypoint
+      navigation. The state of the drone is continuously broadcasted to QGroundControl through 915mHz 
+      SiK telemetry radio.
+  </p>
+
+
+<h4>Precision Landing</h4>
+<div class="box alt">
+    <div class ="6u 12u$(small)">
+      <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/uav/uav_land_fisheye.gif" alt="" /></span>
+      </div>
+  </div>
+
+  <div class="box alt">
+    <div class ="6u 12u$(small)">
+      <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/uav/uav_land_detect.gif" alt="" /></span>
+      </div>
+  </div>
+
+<p>Integrating AprilTag detection functionality to localization and navigation, the team was successful in 
+    automating the precision landing process of the drone. Using a 100 by 100 mm AprilTag, the landing target is
+    dynamically updated and sent to the FCU at 8-15Hz. Upon multiple tests, the team decided to choose
+    landing speed of 8cm/s. 
+</p>
+
+<hr>
+<h3> Demo <h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/REetOASCwDc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<hr>
