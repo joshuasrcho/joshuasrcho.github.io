@@ -1,0 +1,55 @@
+---
+layout: post
+title: Mobile Manipulation
+description: null
+permalink: /portfolio/mobile_manipulation/
+image: null
+---
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<div class="row 200%">
+  <div class="6u 12u$(medium)">
+        <span class="image fit"><img src="{{ site.url | absolute_path}}/assets/images/mobile_manipulation/Yb-fbtest-new.png" alt="" /></span>
+  </div>
+  <div class="6u$ 12u$(medium)">
+    <h3>Introduction</h3>
+    <p>The goal of this project is to drive and manipulate the KUKA youBot in the simulation software CoppeliaSims. 
+      The project covers writing software to perform the following tasks: 
+      <ul>
+        <li>Plan a trajectory for the end-effector of the youBot mobile manipulator 
+          (a mobile base with four mecanum wheels and a 5R robot arm)</li>
+        <li>Perform odometry as the chassis moves </li>
+        <li>Perform feedback/forward control to drive the youBot to pick up a block at a specified location, 
+          carry it to a desired location, and put it down</li>
+      </ul>
+
+    </p>
+  </div>
+</div>
+<hr class="major">
+
+<h3>youBot Kinematics</h3>
+<div class="box alt">
+  <div class="row 50% uniform">
+    <div class ="6u 12u(medium)"><span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/mobile_manipulation/YB_kinematics.png" alt="" /></span></div>
+</div>
+</div>
+<p>This figure illustrates the arm at its home configuration (all joint angles zero) and the frames {s}, {b}, {0}, and {e}.
+  For the image on the right, joint axes 1 and 5 (not shown) point upward and joint axes 2, 3, and 4 are out of the screen.
+</p>
+
+<h3>Simulation</h3>
+<p>Initial cube configuration at (x, y, z) = (1, 0, 0.025 ) m. 
+  Default desired final configuration of the cube at (x, y, z) = (0, -1, 0.025) m </p>
+<div class ="6u 12u(medium)">
+  <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/mobile_manipulation/best_result.gif" alt="" /></span>
+  </div>
+<p>Initial cube configuration at (x, y, z) = (1.5, 0.5, 0.025 ) m. 
+  Default desired final configuration of the cube at (x, y, z) = (1, -1, 0.025) m </p>
+
+<div class ="6u 12u(medium)">
+  <span class="image main"><img src="{{ site.url | absolute_path}}/assets/images/mobile_manipulation/new_task.gif" alt="" /></span>
+  </div>
+
